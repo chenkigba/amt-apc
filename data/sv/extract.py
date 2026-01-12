@@ -35,7 +35,7 @@ def main(args):
     pianos = sorted(pianos)
 
     if (not args.overwrite) and Path(PATH_TMP).exists():
-        with open(PATH_TMP, "r") as f:
+        with open(PATH_TMP, "r", encoding="utf-8") as f:
             tmp = json.load(f)
             raw_styles = tmp["raw_styles"]
             params = tmp["params"]
@@ -46,7 +46,7 @@ def main(args):
             "raw_styles": raw_styles,
             "params": params
         }
-        with open(PATH_TMP, "w") as f:
+        with open(PATH_TMP, "w", encoding="utf-8") as f:
             json.dump(out, f)
     style_vectors, style_features = create_style_vectors(raw_styles, params)
     out = {
@@ -54,7 +54,7 @@ def main(args):
         "style_features": style_features,
         "params": params
     }
-    with open(PATH_STYLE_VECTORS, "w") as f:
+    with open(PATH_STYLE_VECTORS, "w", encoding="utf-8") as f:
         json.dump(out, f)
 
 

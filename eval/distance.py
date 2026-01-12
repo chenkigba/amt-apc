@@ -53,7 +53,7 @@ def get_distance(path1, path2):
 def write_result(path, dists, no_origs):
     sim_avg = sum(dists.values()) / len(dists)
     print(f"Average distance: {sim_avg}")
-    with open(path, "w") as f:
+    with open(path, "w", encoding="utf-8") as f:
         f.write(f"Average distance: {sim_avg}\n\n")
         f.write("Distance per cover:\n")
         for cover, dist in dists.items():

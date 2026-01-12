@@ -24,7 +24,7 @@ class Sampler:
         self.variances = variances
         self.windows = windows
 
-        with open(PATH_STYLE_VECTORS, "r") as f:
+        with open(PATH_STYLE_VECTORS, "r", encoding="utf-8") as f:
             style_vectors = json.load(f)
         self.style_vectors = style_vectors["style_vectors"]
         self.style_vectors = {

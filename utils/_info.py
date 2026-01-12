@@ -15,11 +15,11 @@ class Info:
     def __init__(self, path: Path):
         self.path = path
         if path.exists():
-            with open(path, "r") as f:
+            with open(path, "r", encoding="utf-8") as f:
                 self.data = json.load(f)
         else:
             self.data = {}
-            with open(path, "w") as f:
+            with open(path, "w", encoding="utf-8") as f:
                 json.dump(self.data, f)
         for id in self.data:
             self.data[id] = CustomDict(self.data[id])
@@ -57,7 +57,7 @@ class Info:
             self.data[id] = {}
         self.data[id][key] = value
         if save:
-            with open(self.path, "w") as f:
+            with open(self.path, "w", encoding="utf-8") as f:
                 json.dump(self.data, f, indent=2, ensure_ascii=False)
 
     def update(self, id: str, values: Dict, save: bool = True):
@@ -65,7 +65,7 @@ class Info:
             self.data[id] = {}
         self.data[id].update(values)
         if save:
-            with open(self.path, "w") as f:
+            with open(self.path, "w", encoding="utf-8") as f:
                 json.dump(self.data, f, indent=2, ensure_ascii=False)
 
     def export(self):
@@ -82,7 +82,7 @@ class Info:
                 }
             movies[title]["pianos"].append(id)
 
-        with open(PATH_MOVIES, "w") as f:
+        with open(PATH_MOVIES, "w", encoding="utf-8") as f:
             json.dump(movies, f, indent=2, ensure_ascii=False)
 
     def piano2orig(self, id: str):

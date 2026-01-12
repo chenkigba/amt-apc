@@ -19,7 +19,7 @@ DIR_NAME_PIANO = "piano"
 
 def main(args):
     path_src = args.path_src or FILE_SRC
-    with open(path_src, "r") as f:
+    with open(path_src, "r", encoding="utf-8") as f:
         src = json.load(f)
 
     for n, (title, movies) in enumerate(src.items(), 1):

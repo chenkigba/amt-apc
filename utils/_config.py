@@ -24,6 +24,6 @@ class CustomDict(dict):
 
 root = Path(__file__).parent.parent
 path_config = root / "config.json"
-with open(path_config, "r") as f:
+with open(path_config, "r", encoding="utf-8") as f:
     config_json = json.load(f)
 config = CustomDict(config_json)

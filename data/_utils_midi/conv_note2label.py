@@ -6,7 +6,7 @@ import pickle
 import numpy as np
 
 
-with open("models/config.json", "r") as f:
+with open("models/config.json", "r", encoding="utf-8") as f:
     config = json.load(f)["data"]
 
 
