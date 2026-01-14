@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "AMT-APC: Automatic Piano Cover by Fine-Tuning an Automatic Music Transcription Model"
 readme = "README.md"
 license = { file = "LICENSE" }
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 authors = [
     { name = "Kazuma Komiya" },
     { name = "Yoshihisa Fukuhara" },
@@ -14,8 +14,8 @@ classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Topic :: Multimedia :: Sound/Audio :: Analysis",
 ]
 
@@ -38,7 +38,6 @@ dev = [
     "ipywidgets>=8.1.0",
     "matplotlib>=3.8.0",
 ]
-# 训练和数据处理需要的依赖 (不支持 Windows)
 train = [
     "dlprog>=1.2.8",
     "essentia>=2.1b6.dev1110",
@@ -52,19 +51,28 @@ Repository = "https://github.com/misya11p/amt-apc"
 Paper = "https://arxiv.org/abs/2409.14086"
 
 [project.scripts]
-amt-apc = "infer.__main__:main"
+amt-apc = "amt_apc.infer.__main__:main"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
     "jupyter>=1.0.0",
     "ipykernel>=6.29.0",
     "ipywidgets>=8.1.0",
     "matplotlib>=3.8.0",
 ]
 
+[[tool.uv.index]]
+name = "pytorch-cu124"
+url = "https://download.pytorch.org/whl/cu124"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu124" }
+torchaudio = { index = "pytorch-cu124" }
+
 [tool.hatch.build.targets.wheel]
-packages = ["data", "eval", "infer", "models", "train", "utils"]
+packages = ["amt_apc"]
